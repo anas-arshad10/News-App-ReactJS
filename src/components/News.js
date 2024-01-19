@@ -45,11 +45,11 @@ const News = (props) => {
 
   const fetchMoreData = async () => {
     props.setProgress(10);
-    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=cbd1dc15e619454f8fee23954d3dae3c&page=${page+1}&pageSize=${props.pageSize}`;
-    setPage( page + 1 );
+    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=cbd1dc15e619454f8fee23954d3dae3c&page=${page + 1}&pageSize=${props.pageSize}`;
+    setPage(page + 1);
     let data = await fetch(url);
     let parsedData = await data.json();
-    setArticles(articles.concat(parsedData.articles));
+    setArticles((prevArticles) => [...prevArticles, ...parsedData.articles]);
     setTotalResults(parsedData.totalResults);
   };
 
